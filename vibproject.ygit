@@ -1,0 +1,172 @@
+{
+  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
+
+  "schemaVersion": 1,
+  "manifestVersion": "1.0.0",
+
+  "project": {
+    "id": "",
+    "name": "",
+    "slug": "",
+    "displayName": "",
+    "description": "",
+    "summary": "",
+    "version": "",
+    "status": "",
+    "visibility": "",
+    "category": "",
+    "keywords": [],
+    "homepage": "",
+    "website": ""
+  },
+
+  "organization": {
+    "company": "",
+    "owner": "",
+    "maintainers": [],
+    "contributors": [],
+    "contact": {
+      "email": "",
+      "website": ""
+    }
+  },
+
+  "repository": {
+    "provider": "",
+    "url": "",
+    "branch": "",
+    "defaultBranch": "",
+    "issues": "",
+    "discussions": "",
+    "wiki": "",
+    "documentation": ""
+  },
+
+  "branding": {
+    "productName": "",
+    "shortName": "",
+    "logo": "",
+    "icon": "",
+    "banner": "",
+    "favicon": "",
+    "theme": ""
+  },
+
+  "license": {
+    "name": "",
+    "spdx": "",
+    "file": "LICENSE"
+  },
+
+  "technology": {
+    "languages": [],
+    "frameworks": [],
+    "libraries": [],
+    "packageManagers": [],
+    "databases": [],
+    "apis": []
+  },
+
+  "platform": {
+    "desktop": [],
+    "mobile": [],
+    "server": [],
+    "web": [],
+    "operatingSystems": []
+  },
+
+  "runtime": {
+    "python": "",
+    "node": "",
+    "docker": false,
+    "container": ""
+  },
+
+  "entrypoints": {
+    "application": "",
+    "cli": "",
+    "api": "",
+    "documentation": "",
+    "tests": ""
+  },
+
+  "paths": {
+    "source": "src/",
+    "tests": "tests/",
+    "documentation": "docs/",
+    "scripts": "scripts/",
+    "assets": "assets/",
+    "examples": "examples/",
+    "configuration": "config/",
+    "data": "data/",
+    "project": "project/"
+  },
+
+  "dependencies": {
+    "required": [],
+    "optional": [],
+    "externalServices": []
+  },
+
+  "documentation": {
+    "readme": "README.md",
+    "structure": "PROJECT_STRUCTURE.md",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE",
+    "docsRoot": "docs/",
+    "website": ""
+  },
+
+  "build": {
+    "buildSystem": "",
+    "packageFormat": [],
+    "commands": {
+      "install": "",
+      "build": "",
+      "test": "",
+      "lint": "",
+      "format": ""
+    }
+  },
+
+  "release": {
+    "strategy": "",
+    "versioning": "",
+    "latestVersion": "",
+    "releaseNotes": "docs/release-notes/"
+  },
+
+  "quality": {
+    "formatter": "",
+    "linter": "",
+    "testFramework": "",
+    "coverage": "",
+    "security": []
+  },
+
+  "automation": {
+    "ci": "",
+    "cd": "",
+    "workflows": [],
+    "scheduledTasks": []
+  },
+
+  "ai": {
+    "enabled": true,
+    "repositoryContext": true,
+    "documentationContext": true,
+    "projectStructure": true,
+    "codingGuidelines": true,
+    "architectureGuidelines": true,
+    "entrypointDiscovery": true
+  },
+
+  "metadata": {
+    "createdAt": "",
+    "updatedAt": "",
+    "manifestAuthor": "",
+    "generator": "YGit CLI",
+    "specification": "VPMS",
+    "specificationVersion": "1.0.0"
+  }
+}
