@@ -1,82 +1,126 @@
 {
-  "$schema": "https://schema.ygit.dev/vpms/v1/vibproject.schema.json",
-
-  "schemaVersion": 1,
-  "manifestVersion": "1.0.0",
+  "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "schemaVersion": 2,
+  "manifestVersion": "2.0.0",
 
   "project": {
-    "id": "",
-    "name": "",
-    "slug": "",
-    "displayName": "",
-    "description": "",
-    "summary": "",
-    "version": "",
-    "status": "",
-    "visibility": "",
-    "category": "",
-    "keywords": [],
-    "homepage": "",
-    "website": ""
+    "id": "vibproject-template",
+    "name": "vibproject-template",
+    "slug": "vibproject-template",
+    "displayName": "Vib Project Template",
+    "description": "Official reusable project template for all Vib Tools repositories.",
+    "summary": "Production-ready repository template providing a standardized project structure, documentation layout, metadata manifests, GitHub configuration, and development workflow for every Vib Tools project.",
+    "version": "2.0.0",
+    "status": "stable",
+    "visibility": "public",
+    "category": "project-template",
+    "keywords": [
+      "template",
+      "repository",
+      "boilerplate",
+      "project-template",
+      "vib-tools",
+      "developer-tools",
+      "documentation",
+      "open-source"
+    ],
+    "homepage": "https://vib.tools/",
+    "website": "https://github.com/vibtools/vibproject-template"
+  },
+
+  "classification": {
+    "ownerType": "organization",
+    "productType": "template",
+    "applicationType": "documentation",
+    "distribution": "open-source",
+    "lifecycle": "stable"
   },
 
   "organization": {
-    "company": "",
-    "owner": "",
-    "maintainers": [],
+    "company": "Vib Tools",
+    "owner": "Vib Tools",
+    "maintainers": [
+      "Vib Tools Core Team"
+    ],
     "contributors": [],
     "contact": {
-      "email": "",
-      "website": ""
+      "email": "opensource@vib.tools",
+      "website": "https://vib.tools/"
     }
   },
 
   "repository": {
-    "provider": "",
-    "url": "",
-    "branch": "",
-    "defaultBranch": "",
-    "issues": "",
-    "discussions": "",
+    "provider": "GitHub",
+    "url": "https://github.com/vibtools/vibproject-template",
+    "branch": "main",
+    "defaultBranch": "main",
+    "issues": "https://github.com/vibtools/vibproject-template/issues",
+    "discussions": "https://github.com/vibtools/vibproject-template/discussions",
     "wiki": "",
-    "documentation": ""
+    "documentation": "https://docs.vib.tools/"
+  },
+
+  "links": {
+    "website": "https://vib.tools/",
+    "documentation": "https://docs.vib.tools/",
+    "blog": "https://vib.tools/blog/",
+    "community": "https://github.com/vibtools/vibproject-template/discussions",
+    "youtube": "https://www.youtube.com/@vibtools",
+    "linkedin": "https://www.linkedin.com/company/vib-tools/",
+    "x": "https://x.com/vibtools",
+    "github": "https://github.com/vibtools/vibproject-template"
   },
 
   "branding": {
-    "productName": "",
-    "shortName": "",
-    "logo": "",
-    "icon": "",
-    "banner": "",
-    "favicon": "",
-    "theme": ""
+    "productName": "Vib Project Template",
+    "shortName": "VPT",
+    "logo": "assets/images/logo.png",
+    "icon": "assets/icons/icon.png",
+    "banner": "assets/images/banner.png",
+    "favicon": "assets/icons/favicon.ico",
+    "theme": "dark"
   },
 
   "license": {
-    "name": "",
-    "spdx": "",
+    "name": "MIT License",
+    "spdx": "MIT",
     "file": "LICENSE"
   },
 
   "technology": {
-    "languages": [],
+    "languages": [
+      "Python",
+      "Markdown",
+      "YAML",
+      "JSON"
+    ],
     "frameworks": [],
     "libraries": [],
-    "packageManagers": [],
+    "packageManagers": [
+      "pip"
+    ],
     "databases": [],
     "apis": []
   },
 
   "platform": {
-    "desktop": [],
+    "desktop": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
     "mobile": [],
     "server": [],
     "web": [],
-    "operatingSystems": []
+    "operatingSystems": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ]
   },
 
   "runtime": {
-    "python": "",
+    "python": ">=3.12",
     "node": "",
     "docker": false,
     "container": ""
@@ -85,9 +129,10 @@
   "entrypoints": {
     "application": "",
     "cli": "",
+    "gui": "",
     "api": "",
-    "documentation": "",
-    "tests": ""
+    "documentation": "README.md",
+    "tests": "tests/"
   },
 
   "paths": {
@@ -114,7 +159,16 @@
     "changelog": "CHANGELOG.md",
     "license": "LICENSE",
     "docsRoot": "docs/",
-    "website": ""
+    "website": "https://docs.vib.tools/"
+  },
+
+  "support": {
+    "email": "opensource@vib.tools",
+    "documentation": "https://docs.vib.tools/",
+    "community": "https://github.com/vibtools/vibproject-template/discussions",
+    "security": "https://github.com/vibtools/vibproject-template/security/policy",
+    "issues": "https://github.com/vibtools/vibproject-template/issues",
+    "discussions": "https://github.com/vibtools/vibproject-template/discussions"
   },
 
   "build": {
@@ -131,9 +185,32 @@
 
   "release": {
     "strategy": "",
-    "versioning": "",
-    "latestVersion": "",
+    "versioning": "Semantic Versioning",
+    "latestVersion": "2.0.0",
     "releaseNotes": "docs/release-notes/"
+  },
+
+  "distribution": {
+    "githubReleases": "",
+    "dockerHub": "",
+    "npm": "",
+    "pypi": "",
+    "winget": "",
+    "homebrew": "",
+    "snap": "",
+    "flatpak": "",
+    "chocolatey": "",
+    "scoop": "",
+    "crates": "",
+    "nuget": "",
+    "maven": ""
+  },
+
+  "funding": {
+    "github": "",
+    "openCollective": "",
+    "patreon": "",
+    "custom": ""
   },
 
   "quality": {
@@ -144,8 +221,15 @@
     "security": []
   },
 
+  "security": {
+    "policy": ".github/SECURITY.md",
+    "sbom": "",
+    "signing": "",
+    "vulnerabilityReporting": ""
+  },
+
   "automation": {
-    "ci": "",
+    "ci": "GitHub Actions",
     "cd": "",
     "workflows": [],
     "scheduledTasks": []
@@ -164,9 +248,9 @@
   "metadata": {
     "createdAt": "",
     "updatedAt": "",
-    "manifestAuthor": "",
+    "manifestAuthor": "Vib Tools",
     "generator": "YGit CLI",
     "specification": "VPMS",
-    "specificationVersion": "1.0.0"
+    "specificationVersion": "2.0.0"
   }
 }
