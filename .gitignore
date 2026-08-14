@@ -1,2 +1,11 @@
-# Project/ folder always use for private project developments documents & other files
-#/project -Use /project/ folder in your local machine for private project developments documents & other files. This folder should not be tracked by git and should be ignored in the repository.
+# VibProject template repository policy
+#
+# This repository intentionally tracks the template project/ structure,
+# governance files, and placeholders. Do NOT add an active /project/ ignore
+# rule to the template repository itself.
+#
+# For a fresh project copied from this template, run setup-project.ps1 before
+# manual Git initialization. The initializer adds a fresh-project-only rule so
+# content under project/ remains private/local in that new project.
+#
+# .gitignore never untracks files that Git already tracks.

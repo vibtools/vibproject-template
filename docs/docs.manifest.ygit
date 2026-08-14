@@ -2,26 +2,23 @@
   "$schema": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
   "schemaVersion": 1,
   "manifestVersion": "1.0.0",
-
   "documentation": {
     "id": "vibproject-template",
     "title": "Vib Project Template Documentation",
-    "description": "Official documentation for the Vib Project Template. This documentation explains the standard repository structure, project manifests, development workflow, documentation guidelines, and best practices used across all Vib Tools projects.",
+    "description": "Public user documentation for the Vib Project Template, including repository structure, getting-started information, user-facing guides, configuration, API, troubleshooting, and release information as those materials are published.",
     "docsRoot": "docs/",
     "defaultLanguage": "en",
-    "status": "published",
+    "status": "draft",
     "tags": [
       "template",
       "repository",
       "documentation",
-      "developer-guide",
       "vib-tools",
       "vpms",
       "dpms"
     ],
     "defaultDocument": "index.md"
   },
-
   "discovery": {
     "enabled": true,
     "recursive": true,
@@ -40,12 +37,10 @@
     "ignoreHidden": true,
     "followSymlink": false
   },
-
   "structure": {
     "autoGenerate": true,
     "sort": "manual",
     "maxDepth": 10,
-
     "sections": [
       {
         "id": "getting-started",
@@ -139,7 +134,6 @@
       }
     ]
   },
-
   "versions": {
     "enabled": false,
     "current": "1.0.0",
@@ -149,6 +143,5 @@
     ],
     "strategy": "directory"
   },
-
   "custom": {}
 }

@@ -2,14 +2,13 @@
   "$schema": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
   "schemaVersion": 2,
   "manifestVersion": "2.0.0",
-
   "project": {
     "id": "vibproject-template",
     "name": "vibproject-template",
     "slug": "vibproject-template",
     "displayName": "Vib Project Template",
     "description": "Official reusable project template for all Vib Tools repositories.",
-    "summary": "Production-ready repository template providing a standardized project structure, documentation layout, metadata manifests, GitHub configuration, and development workflow for every Vib Tools project.",
+    "summary": "Reusable repository template providing a standardized project structure, documentation layout, metadata manifests, GitHub configuration, and internal project-management workspace for Vib Tools projects.",
     "version": "2.0.0",
     "status": "stable",
     "visibility": "public",
@@ -27,7 +26,6 @@
     "homepage": "https://vib.tools/",
     "website": "https://github.com/vibtools/vibproject-template"
   },
-
   "classification": {
     "ownerType": "organization",
     "productType": "template",
@@ -35,7 +33,6 @@
     "distribution": "open-source",
     "lifecycle": "stable"
   },
-
   "organization": {
     "company": "Vib Tools",
     "owner": "Vib Tools",
@@ -48,93 +45,37 @@
       "website": "https://vib.tools/"
     }
   },
-
   "repository": {
     "provider": "GitHub",
     "url": "https://github.com/vibtools/vibproject-template",
     "branch": "main",
     "defaultBranch": "main",
     "issues": "https://github.com/vibtools/vibproject-template/issues",
-    "discussions": "https://github.com/vibtools/vibproject-template/discussions",
-    "wiki": "",
     "documentation": "https://docs.vib.tools/"
   },
-
   "links": {
     "website": "https://vib.tools/",
     "documentation": "https://docs.vib.tools/",
     "blog": "https://vib.tools/blog/",
-    "community": "https://github.com/vibtools/vibproject-template/discussions",
     "youtube": "https://www.youtube.com/@vibtools",
     "linkedin": "https://www.linkedin.com/company/vib-tools/",
     "x": "https://x.com/vibtools",
     "github": "https://github.com/vibtools/vibproject-template"
   },
-
   "branding": {
     "productName": "Vib Project Template",
     "shortName": "VPT",
-    "logo": "assets/images/logo.png",
-    "icon": "assets/icons/icon.png",
-    "banner": "assets/images/banner.png",
-    "favicon": "assets/icons/favicon.ico",
     "theme": "dark"
   },
-
   "license": {
     "name": "MIT License",
     "spdx": "MIT",
     "file": "LICENSE"
   },
-
-  "technology": {
-    "languages": [
-      "Python",
-      "Markdown",
-      "YAML",
-      "JSON"
-    ],
-    "frameworks": [],
-    "libraries": [],
-    "packageManagers": [
-      "pip"
-    ],
-    "databases": [],
-    "apis": []
-  },
-
-  "platform": {
-    "desktop": [
-      "Windows",
-      "Linux",
-      "macOS"
-    ],
-    "mobile": [],
-    "server": [],
-    "web": [],
-    "operatingSystems": [
-      "Windows",
-      "Linux",
-      "macOS"
-    ]
-  },
-
-  "runtime": {
-    "python": ">=3.12",
-    "node": "",
-    "docker": false,
-    "container": ""
-  },
-
   "entrypoints": {
-    "application": "",
-    "cli": "",
-    "gui": "",
-    "api": "",
     "documentation": "README.md",
     "tests": "tests/"
   },
-
   "paths": {
     "source": "src/",
     "tests": "tests/",
@@ -146,13 +87,11 @@
     "data": "data/",
     "project": "project/"
   },
-
   "dependencies": {
     "required": [],
     "optional": [],
     "externalServices": []
   },
-
   "documentation": {
     "readme": "README.md",
     "structure": "PROJECT_STRUCTURE.md",
@@ -161,80 +100,17 @@
     "docsRoot": "docs/",
     "website": "https://docs.vib.tools/"
   },
-
   "support": {
     "email": "opensource@vib.tools",
     "documentation": "https://docs.vib.tools/",
-    "community": "https://github.com/vibtools/vibproject-template/discussions",
     "security": "https://github.com/vibtools/vibproject-template/security/policy",
-    "issues": "https://github.com/vibtools/vibproject-template/issues",
-    "discussions": "https://github.com/vibtools/vibproject-template/discussions"
+    "issues": "https://github.com/vibtools/vibproject-template/issues"
   },
-
-  "build": {
-    "buildSystem": "",
-    "packageFormat": [],
-    "commands": {
-      "install": "",
-      "build": "",
-      "test": "",
-      "lint": "",
-      "format": ""
-    }
-  },
-
   "release": {
-    "strategy": "",
     "versioning": "Semantic Versioning",
     "latestVersion": "2.0.0",
     "releaseNotes": "docs/release-notes/"
   },
-
-  "distribution": {
-    "githubReleases": "",
-    "dockerHub": "",
-    "npm": "",
-    "pypi": "",
-    "winget": "",
-    "homebrew": "",
-    "snap": "",
-    "flatpak": "",
-    "chocolatey": "",
-    "scoop": "",
-    "crates": "",
-    "nuget": "",
-    "maven": ""
-  },
-
-  "funding": {
-    "github": "",
-    "openCollective": "",
-    "patreon": "",
-    "custom": ""
-  },
-
-  "quality": {
-    "formatter": "",
-    "linter": "",
-    "testFramework": "",
-    "coverage": "",
-    "security": []
-  },
-
-  "security": {
-    "policy": ".github/SECURITY.md",
-    "sbom": "",
-    "signing": "",
-    "vulnerabilityReporting": ""
-  },
-
-  "automation": {
-    "ci": "GitHub Actions",
-    "cd": "",
-    "workflows": [],
-    "scheduledTasks": []
-  },
-
   "ai": {
     "enabled": true,
     "repositoryContext": true,
@@ -244,10 +120,7 @@
     "architectureGuidelines": true,
     "entrypointDiscovery": true
   },
-
   "metadata": {
-    "createdAt": "",
-    "updatedAt": "",
     "manifestAuthor": "Vib Tools",
     "generator": "YGit CLI",
     "specification": "VPMS",

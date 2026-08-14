@@ -1,133 +1,90 @@
-# Vib Project Template
+# Vib Project Template — Project Structure
 
-> **Official Universal Project Template for the YGit Ecosystem**
+This README explains only the structure and responsibility boundaries of the Vib Project Template.
 
-This repository is the official blank project template used by the **YGit Developer Platform** and **Vib Project Manifest Specification (VPMS)**.
-
-It provides a clean, language-independent repository structure that can be used as the starting point for Python, Node.js, PHP, Go, Rust, C#, Java, and many other software projects.
-
----
-
-## Purpose
-
-This repository exists to provide a consistent foundation for every project in the YGit ecosystem.
-
-It includes:
-
-- Standard repository structure
-- GitHub community files
-- Documentation layout
-- Project management directories
-- Repository conventions
-- `vibproject.ygit` project manifest
-- VPMS-compatible repository architecture
-
-The repository intentionally contains **no application code**.
-
----
-
-## Repository Status
-
-This repository is a **blank template**.
-
-It does **not** contain:
-
-- Application source code
-- Business logic
-- APIs
-- Libraries
-- Packages
-- Production configuration
-- Project-specific documentation
-
-Everything is intentionally left empty so it can become the foundation of a new project.
-
----
+The template is technology-neutral. A project created from it chooses its own implementation language, runtime, framework, package manager, build system, and deployment model.
 
 ## Repository Structure
 
 ```text
-.github/
-assets/
-config/
-data/
-docs/
-examples/
-project/
-scripts/
-src/
-tests/
-
-.gitignore
-.editorconfig
-.gitattributes
-
-README.md
-LICENSE
-CHANGELOG.md
-PROJECT_STRUCTURE.md
-
-vibproject.ygit
+.
+├── .github/              GitHub repository configuration
+├── assets/               Project assets
+├── config/               Project configuration
+├── data/                 Project or runtime data
+├── docs/                 Public/user documentation
+├── examples/             Public examples and sample usage
+├── project/              Internal project development and management workspace
+├── scripts/              Project utility scripts
+├── src/                  Project implementation/source code
+├── tests/                Automated tests
+│
+├── .editorconfig
+├── .gitattributes
+├── .gitignore
+├── AGENTS.md             Repository behavior and document-placement rules
+├── CHANGELOG.md          Public change history when maintained
+├── LICENSE               Open-source license
+├── PROJECT_STRUCTURE.md  Detailed structure reference
+├── README.md              Structure overview
+├── VERSIONING.md          Public versioning information when maintained
+├── setup-project.ps1     Fresh-project workspace preparation
+└── vibproject.ygit       Technology-neutral VPMS v2 project manifest
 ```
 
----
+## Folder Responsibilities
 
-## Getting Started
+### `project/`
 
-Create a new project using this template.
+Internal project development and management workspace.
 
-Then:
+The Vib Project Template repository intentionally includes and tracks this structure. In a fresh project created from the template, the same directory is used as that project's private/internal workspace.
 
-1. Rename and configure the project.
-2. Update `vibproject.ygit`.
-3. Replace this README with your project's documentation.
-4. Add your source code to `src/`.
-5. Add project documentation under `docs/`.
-6. Commit and start development.
+### `docs/`
 
----
+Public, user-facing documentation. It is the documentation package described by `docs/docs.manifest.ygit`.
 
-## Documentation
+### `src/`
 
-Repository architecture is documented in:
+Actual project implementation/source code.
 
-- `PROJECT_STRUCTURE.md`
+### `tests/`
 
-Project metadata is defined in:
+Automated tests for the actual project.
 
-- `vibproject.ygit`
+### `scripts/`
 
----
+Project utilities such as setup, build, test, release, and maintenance scripts.
 
-## Compatibility
+### `assets/`
 
-This template is designed to work with:
+Project assets such as images, icons, fonts, themes, or other static resources when required.
 
-- YGit CLI
-- VPMS (Vib Project Manifest Specification)
-- GitHub
-- GitHub Actions
-- Docusaurus
-- AI-assisted development workflows
+### `config/` and `data/`
 
----
+Project configuration and project/runtime data when required.
 
-## License
+### `examples/`
 
-This repository is released under the license included in the `LICENSE` file.
+Public examples or sample usage when required.
 
----
+### `.github/`
 
-## Maintained By
+GitHub-specific repository configuration.
 
-**Vib Tools**
+## Root File Responsibilities
 
-Website: https://vib.tools/
+- `AGENTS.md` defines repository behavior and document-placement rules.
+- `PROJECT_STRUCTURE.md` defines the detailed repository structure standard.
+- `vibproject.ygit` describes the repository through VPMS v2.
+- `LICENSE` contains the open-source license.
+- `CHANGELOG.md` is reserved for public change history when used.
+- `setup-project.ps1` prepares a copied template as a fresh project workspace without performing Git publishing operations.
 
-Developer Platform: https://ygit.dev/
+## Responsibility Boundary
 
-Schema: https://schema.ygit.dev/
-
----
-
-> This repository is the official foundation for new YGit-compatible projects. It is intended to be copied or generated into a new repository before development begins.
+```text
+project/  → INTERNAL project development and management workspace
+docs/     → PUBLIC user documentation
+README.md → PROJECT STRUCTURE only
+```

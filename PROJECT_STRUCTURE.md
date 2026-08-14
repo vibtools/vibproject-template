@@ -1,48 +1,12 @@
 # Project Structure Standard
 
-## Overview
+## Purpose
 
-This document defines the repository architecture standard for this project.
+This document defines the repository structure of the Vib Project Template and the responsibility of each major location.
 
-It describes the purpose and responsibility of each top-level folder and establishes a consistent organizational structure that is easy for developers, contributors, and AI assistants to understand.
+The structure is technology-neutral. A generated project selects its own language, runtime, framework, package manager, build system, and deployment model.
 
-This document is **not project-specific**. Instead, it serves as a reusable architecture guideline that can be adapted to projects of different sizes and technologies.
-
----
-
-# Design Principles
-
-The repository follows a responsibility-based architecture.
-
-Each folder exists for a single purpose.
-
-The primary goals are:
-
-- Keep the repository clean and predictable.
-- Separate source code from documentation and resources.
-- Minimize ambiguity when adding new files.
-- Make the repository easy to navigate.
-- Support long-term maintenance.
-- Remain language and framework independent.
-
----
-
-# Architecture Rules
-
-The following rules should always be followed whenever possible.
-
-1. One folder should have one clear responsibility.
-2. Every file should have one permanent home.
-3. Avoid creating unnecessary top-level folders.
-4. Keep source code separate from documentation.
-5. Keep static resources separate from source code.
-6. Do not commit generated build artifacts unless intentionally required.
-7. Prefer extending existing folders over creating new ones.
-8. Keep the repository structure consistent over time.
-
----
-
-# Standard Repository Structure
+## Standard Repository Structure
 
 ```text
 .
@@ -57,261 +21,145 @@ The following rules should always be followed whenever possible.
 ├── src/
 ├── tests/
 │
+├── .editorconfig
+├── .gitattributes
 ├── .gitignore
+├── AGENTS.md
 ├── CHANGELOG.md
 ├── LICENSE
 ├── PROJECT_STRUCTURE.md
-├── pyproject.toml
-└── README.md
+├── README.md
+├── VERSIONING.md
+├── setup-project.ps1
+└── vibproject.ygit
 ```
 
----
+## Architecture Principles
 
-# Folder Responsibilities
+1. Give each top-level location one clear responsibility.
+2. Keep implementation, internal project management, and public documentation separate.
+3. Keep internal project-development and management material under `project/`.
+4. Keep public/user documentation under `docs/`.
+5. Keep the root `README.md` focused on repository structure.
+6. Avoid unnecessary top-level folders.
+7. Keep the template technology-neutral.
+8. Update this document when the approved structure changes.
 
-## src/
+## Folder Responsibilities
 
-Application source code.
+### `src/`
 
-Contains all production code including application logic, UI, business logic, services, models, utilities and runtime components.
+Actual project implementation/source code.
 
----
+### `tests/`
 
-## assets/
+Automated tests for the actual project.
 
-Static resources used by the application.
+### `scripts/`
 
-Typical contents:
+Project utilities such as setup, build, test, release, development, and maintenance scripts.
 
-- Icons
-- Images
-- Fonts
-- Themes
+### `assets/`
 
----
+Project assets such as images, icons, fonts, themes, or other static resources when required.
 
-## config/
+### `config/`
 
-Application configuration.
+Project configuration when required.
 
-Typical contents:
+### `data/`
 
-- Configuration files
-- Default settings
-- Environment configuration
-- Logging configuration
+Project/runtime data or other data resources when required.
 
----
+### `examples/`
 
-## data/
+Public examples and sample usage when required.
 
-Application runtime data.
+### `docs/` — Public user documentation
 
-Typical contents:
+`docs/` is exclusively for public/user-facing documentation.
 
-- Templates
-- Sample data
-- Import files
-- Export files
-- Local databases
-- Runtime resources
-
----
-
-## docs/
-
-End-user documentation.
-
-Documentation should remain organized by topic instead of implementation details.
-
-Recommended categories include:
+Typical sections include:
 
 - Getting Started
 - Guides
 - Features
 - Configuration
+- API Reference
 - Tutorials
-- API
 - FAQ
 - Troubleshooting
 - Release Notes
+- Documentation media
 
-Documentation should remain compatible with documentation generators such as Docusaurus whenever practical.
+Internal project-development or management material does not belong in `docs/`.
 
----
+### `project/` — Internal project development and management
 
-## project/
+`project/` is the canonical internal development and management workspace.
 
-Internal project documentation.
+It contains the internal records, standards, plans, decisions, research, specifications, architecture material, and governance needed to manage the project.
 
-Typical contents:
+#### Template repository context
 
-- Architecture
-- Specifications
-- Research
-- Design Decisions
-- Roadmaps
-- Technical Notes
-- Diagrams
+The Vib Project Template repository intentionally includes and tracks the template `project/` structure, its internal governance documents, and its placeholders. This is part of the template architecture.
 
-This folder is intended primarily for contributors rather than end users.
+#### Fresh-project context
 
----
+When the template is copied into a fresh project, that project's `project/` directory becomes private/internal project-development and management material. It is not public user documentation.
 
-## examples/
+### `.github/`
 
-Example projects and sample usage.
+GitHub-specific repository configuration and community/workflow files.
 
-Useful for demonstrating recommended implementation patterns.
+## Root File Responsibilities
 
----
+### `README.md`
 
-## scripts/
+Explains the repository/project structure only.
 
-Development automation.
+### `AGENTS.md`
 
-Typical contents:
+Repository-level behavior and document-placement rules for AI agents and developers. Detailed internal governance remains under `project/`.
 
-- Setup scripts
-- Build scripts
-- Test scripts
-- Release scripts
-- Maintenance utilities
+### `PROJECT_STRUCTURE.md`
 
----
+The detailed repository structure standard.
 
-## tests/
+### `vibproject.ygit`
 
-Automated testing.
+Technology-neutral VPMS v2 project metadata.
 
-Typical contents:
+### `docs/docs.manifest.ygit`
 
-- Unit tests
-- Integration tests
-- End-to-end tests
-- Test fixtures
+DPMS v1 manifest for the public `docs/` package.
 
----
+### `CHANGELOG.md`
 
-## .github/
+Public change history when maintained.
 
-GitHub-specific configuration.
+### `VERSIONING.md`
 
-Typical contents:
+Public versioning information when maintained.
 
-- GitHub Actions
-- Issue Templates
-- Pull Request Templates
-- Funding Configuration
-- Repository Workflows
+### `LICENSE`
 
----
+Open-source licensing terms.
 
-# Root Files
+### `.gitignore`
 
-## README.md
+Repository ignore rules. The template repository must not hide its tracked `project/` structure; fresh-project privacy is prepared by the setup workflow.
 
-Repository introduction.
+### `setup-project.ps1`
 
-Provides an overview of the project, installation instructions, basic usage and useful links.
+Fresh-project workspace preparation without automatic Git publishing operations.
 
----
+## Responsibility Boundary
 
-## CHANGELOG.md
+```text
+project/  → INTERNAL project development and management
+docs/     → PUBLIC user documentation
+README.md → PROJECT STRUCTURE only
+```
 
-Public history of significant project changes.
-
----
-
-## LICENSE
-
-Project license.
-
----
-
-## PROJECT_STRUCTURE.md
-
-Defines the repository architecture standard.
-
----
-
-## pyproject.toml
-
-Primary Python project configuration.
-
-For non-Python projects, this file should be replaced by the appropriate package or build configuration.
-
----
-
-## .gitignore
-
-Specifies files and directories that should not be tracked by Git.
-
----
-
-# Customization Policy
-
-This repository structure is intended as a universal starting point.
-
-Projects are allowed to:
-
-- Add new folders.
-- Remove unused folders.
-- Rename folders when appropriate.
-- Extend folder hierarchies.
-
-However, any customization should preserve clear responsibilities and maintain a logical architecture.
-
-When structural changes are introduced, this document should also be updated.
-
----
-
-# Optional vs Required
-
-| Component | Recommendation |
-|-----------|----------------|
-| src | Required |
-| README.md | Required |
-| LICENSE | Required |
-| .gitignore | Required |
-| PROJECT_STRUCTURE.md | Recommended |
-| tests | Recommended |
-| docs | Recommended |
-| scripts | Optional |
-| examples | Optional |
-| project | Optional |
-| assets | Optional |
-| config | Optional |
-| data | Optional |
-
----
-
-# Guidelines for Contributors
-
-Before creating a new file, determine its responsibility and place it in the most appropriate existing folder.
-
-Avoid introducing new top-level folders unless there is a clear architectural reason.
-
-Maintain consistency throughout the repository.
-
----
-
-# Guidelines for AI Assistants
-
-AI contributors should:
-
-- Respect existing folder responsibilities.
-- Prefer existing folders before creating new ones.
-- Avoid unnecessary structural changes.
-- Keep generated code organized.
-- Update this document whenever repository architecture changes.
-
----
-
-# Final Note
-
-A repository structure should evolve with the project, but its architecture should remain understandable, predictable and maintainable.
-
-Consistency is generally more valuable than constantly reorganizing folders.
-
-This document serves as the single source of truth for repository organization.
+This responsibility boundary applies to the template architecture and should remain clear in projects derived from it.
