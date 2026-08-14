@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.ygit.dev/dpms/v1/docs.manifest.schema.json",
+  "title": "Documentation Package Manifest Specification (DPMS)",
+  "description": "DPMS v1.0.0 - Documentation Package Manifest Specification",
+  "$comment": "https://schema.ygit.dev/",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "manifestVersion",
+    "documentation",
+    "discovery",
+    "structure"
+  ],
+
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+
+    "schemaVersion": {
+      "const": 1
+    },
+
+    "manifestVersion": {
+      "$ref": "#/$defs/semver"
+    },
+
+    "documentation": {
+      "$ref": "#/$defs/documentation"
+    },
+
+    "discovery": {
+      "$ref": "#/$defs/discovery"
+    },
+
+    "structure": {
+      "$ref": "#/$defs/structure"
+    },
+
+    "versions": {
+      "$ref": "#/$defs/versions"
+    },
+
+    "custom": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Vendor-specific extensions.",
+      "default": {}
+    }
+  },
+
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+
+    "pathString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/).+"
+    },
+
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-.]+)?(?:\\+[0-9A-Za-z-.]+)?$"
+    },
+
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "documentation": {
+      "type": "object",
+      "additionalProperties": false,
+
+      "required": ["id", "title", "docsRoot", "defaultDocument"],
+
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+
+        "description": {
+          "type": "string"
+        },
+
+        "docsRoot": {
+          "$ref": "#/$defs/pathString"
+        },
+
+        "defaultLanguage": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+          "default": "en"
+        },
+
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published", "deprecated", "archived"],
+          "default": "published"
+        },
+
+        "tags": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "defaultDocument": {
+          "$ref": "#/$defs/pathString",
+          "description": "Default document loaded when users open the documentation package."
+        }
+      }
+    },
+
+    "discovery": {
+      "type": "object",
+
+      "additionalProperties": false,
+
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+
+        "recursive": {
+          "type": "boolean",
+          "default": true
+        },
+
+        "include": {
+          "$ref": "#/$defs/stringArray"
+        },
+
+        "exclude": {
+          "$ref": "#/$defs/stringArray"
+        },
+
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["md", "mdx"]
+          },
+          "default": ["md"]
+        },
+
+        "ignoreHidden": {
+          "type": "boolean",
+          "default": true
+        },
+
+        "followSymlink": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+
+    "structure": {
+      "type": "object",
+
+      "additionalProperties": false,
+
+      "required": ["sections"],
+
+      "properties": {
+        "autoGenerate": {
+          "type": "boolean",
+          "default": true
+        },
+
+        "sort": {
+          "type": "string",
+          "enum": ["manual", "alphabetical", "filesystem"],
+          "default": "manual"
+        },
+
+        "maxDepth": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 10
+        },
+
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/section"
+          }
+        }
+      }
+    },
+
+    "section": {
+      "type": "object",
+
+      "additionalProperties": false,
+
+      "required": ["id", "title", "path"],
+
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+
+        "description": {
+          "type": "string"
+        },
+
+        "icon": {
+          "type": "string"
+        },
+
+        "path": {
+          "$ref": "#/$defs/pathString",
+          "description": "Relative path from docsRoot."
+        },
+
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
+
+        "collapsed": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+
+    "versions": {
+      "type": "object",
+
+      "additionalProperties": false,
+
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+
+        "current": {
+          "$ref": "#/$defs/semver"
+        },
+
+        "latest": {
+          "$ref": "#/$defs/semver"
+        },
+
+        "available": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/semver"
+          },
+          "uniqueItems": true
+        },
+        "strategy": {
+          "type": "string",
+          "enum": ["directory", "branch", "tag"],
+          "default": "directory"
+        }
+      }
+    }
+  }
+}

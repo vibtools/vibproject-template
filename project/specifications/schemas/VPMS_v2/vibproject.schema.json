@@ -1,0 +1,1020 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+  "title": "Vib Project Manifest Schema",
+  "description": "Official JSON Schema for validating Version 2 Vib Project Manifest (vibproject.ygit) files.",
+  "$comment": "VPMS (Vib Project Manifest Specification) v2.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "manifestVersion",
+    "project"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://schema.ygit.dev/vpms/v2/vibproject.schema.json",
+      "format": "uri",
+      "description": "Canonical URL of the VPMS Version 2 JSON Schema."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 2,
+      "description": "Major version of the Vib Project Manifest Schema."
+    },
+    "manifestVersion": {
+      "type": "string",
+      "pattern": "^2\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$",
+      "description": "Semantic version of the VPMS Version 2 manifest format."
+    },
+    "project": {
+      "$ref": "#/$defs/project"
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "organization": {
+      "$ref": "#/$defs/organization"
+    },
+    "repository": {
+      "$ref": "#/$defs/repository"
+    },
+    "links": {
+      "$ref": "#/$defs/links"
+    },
+    "branding": {
+      "$ref": "#/$defs/branding"
+    },
+    "license": {
+      "$ref": "#/$defs/license"
+    },
+    "technology": {
+      "$ref": "#/$defs/technology"
+    },
+    "platform": {
+      "$ref": "#/$defs/platform"
+    },
+    "runtime": {
+      "$ref": "#/$defs/runtime"
+    },
+    "entrypoints": {
+      "$ref": "#/$defs/entrypoints"
+    },
+    "paths": {
+      "$ref": "#/$defs/paths"
+    },
+    "dependencies": {
+      "$ref": "#/$defs/dependencies"
+    },
+    "documentation": {
+      "$ref": "#/$defs/documentation"
+    },
+    "support": {
+      "$ref": "#/$defs/support"
+    },
+    "build": {
+      "$ref": "#/$defs/build"
+    },
+    "release": {
+      "$ref": "#/$defs/release"
+    },
+    "distribution": {
+      "$ref": "#/$defs/distribution"
+    },
+    "funding": {
+      "$ref": "#/$defs/funding"
+    },
+    "quality": {
+      "$ref": "#/$defs/quality"
+    },
+    "security": {
+      "$ref": "#/$defs/security"
+    },
+    "automation": {
+      "$ref": "#/$defs/automation"
+    },
+    "ai": {
+      "$ref": "#/$defs/ai"
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pathString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?![A-Za-z]:[\\\\/])(?!\\.\\.?$)(?!\\.\\.?/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"
+    },
+    "uriString": {
+      "type": "string",
+      "format": "uri"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$"
+    },
+    "stringMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "project": {
+      "type": "object",
+      "description": "Project identity and general metadata.",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable machine-readable project identifier.",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Canonical project name.",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-safe project slug.",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Human-readable project display name.",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "description": "Concise project description.",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "summary": {
+          "type": "string",
+          "description": "Extended project summary.",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "version": {
+          "$ref": "#/$defs/semver"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "alpha",
+            "beta",
+            "stable",
+            "deprecated",
+            "archived"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private",
+            "internal"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "description": "Project category.",
+          "minLength": 1
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Search and discovery keywords.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "homepage": {
+          "$ref": "#/$defs/uriString"
+        },
+        "website": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "description": "Project classification and distribution metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "ownerType": {
+          "type": "string",
+          "enum": [
+            "organization",
+            "individual",
+            "community",
+            "government",
+            "education"
+          ]
+        },
+        "productType": {
+          "type": "string",
+          "enum": [
+            "official-product",
+            "internal-tool",
+            "template",
+            "library",
+            "sdk",
+            "plugin",
+            "demo",
+            "prototype",
+            "experimental",
+            "community-project"
+          ]
+        },
+        "applicationType": {
+          "type": "string",
+          "enum": [
+            "desktop-app",
+            "web-app",
+            "mobile-app",
+            "cli",
+            "api",
+            "library",
+            "framework",
+            "service",
+            "website",
+            "extension",
+            "documentation",
+            "desktop-service",
+            "web-service",
+            "microservice",
+            "worker"
+          ]
+        },
+        "distribution": {
+          "type": "string",
+          "enum": [
+            "open-source",
+            "closed-source",
+            "commercial",
+            "private",
+            "freemium"
+          ]
+        },
+        "lifecycle": {
+          "type": "string",
+          "enum": [
+            "planning",
+            "development",
+            "beta",
+            "stable",
+            "deprecated",
+            "archived"
+          ]
+        }
+      }
+    },
+    "organization": {
+      "type": "object",
+      "description": "Organization, authors, maintainers, and ownership information.",
+      "additionalProperties": false,
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Owning organization or company.",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "description": "Primary project owner.",
+          "minLength": 1
+        },
+        "maintainers": {
+          "type": "array",
+          "description": "Project maintainers.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "contributors": {
+          "type": "array",
+          "description": "Project contributors.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "contact": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "website": {
+              "$ref": "#/$defs/uriString"
+            }
+          }
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "description": "Repository hosting and source-control information.",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "url"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "Source-control hosting provider.",
+          "minLength": 1
+        },
+        "url": {
+          "$ref": "#/$defs/uriString"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Current working branch.",
+          "minLength": 1
+        },
+        "defaultBranch": {
+          "type": "string",
+          "description": "Default repository branch.",
+          "minLength": 1
+        },
+        "issues": {
+          "$ref": "#/$defs/uriString"
+        },
+        "discussions": {
+          "$ref": "#/$defs/uriString"
+        },
+        "wiki": {
+          "$ref": "#/$defs/uriString"
+        },
+        "documentation": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "Official project links.",
+      "additionalProperties": false,
+      "properties": {
+        "website": {
+          "$ref": "#/$defs/uriString"
+        },
+        "documentation": {
+          "$ref": "#/$defs/uriString"
+        },
+        "blog": {
+          "$ref": "#/$defs/uriString"
+        },
+        "community": {
+          "$ref": "#/$defs/uriString"
+        },
+        "youtube": {
+          "$ref": "#/$defs/uriString"
+        },
+        "linkedin": {
+          "$ref": "#/$defs/uriString"
+        },
+        "x": {
+          "$ref": "#/$defs/uriString"
+        },
+        "github": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "description": "Project branding and visual asset locations.",
+      "additionalProperties": false,
+      "properties": {
+        "productName": {
+          "type": "string",
+          "description": "Official product name.",
+          "minLength": 1
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Abbreviated product name.",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "logo": {
+          "$ref": "#/$defs/pathString"
+        },
+        "icon": {
+          "$ref": "#/$defs/pathString"
+        },
+        "banner": {
+          "$ref": "#/$defs/pathString"
+        },
+        "favicon": {
+          "$ref": "#/$defs/pathString"
+        },
+        "theme": {
+          "type": "string",
+          "enum": [
+            "light",
+            "dark",
+            "system"
+          ]
+        }
+      }
+    },
+    "license": {
+      "type": "object",
+      "description": "Project license metadata.",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "spdx"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable license name.",
+          "minLength": 1
+        },
+        "spdx": {
+          "type": "string",
+          "description": "SPDX license identifier.",
+          "pattern": "^[A-Za-z0-9-.+]+$"
+        },
+        "file": {
+          "$ref": "#/$defs/pathString"
+        }
+      }
+    },
+    "technology": {
+      "type": "object",
+      "description": "Programming languages, frameworks, runtimes, and package managers.",
+      "additionalProperties": false,
+      "properties": {
+        "languages": {
+          "type": "array",
+          "description": "Programming languages.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "frameworks": {
+          "type": "array",
+          "description": "Application frameworks.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "libraries": {
+          "type": "array",
+          "description": "Notable libraries.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "packageManagers": {
+          "type": "array",
+          "description": "Package managers.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "databases": {
+          "type": "array",
+          "description": "Database technologies.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "apis": {
+          "type": "array",
+          "description": "External or public APIs.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "platform": {
+      "type": "object",
+      "description": "Supported operating systems and target platforms.",
+      "additionalProperties": false,
+      "properties": {
+        "desktop": {
+          "type": "array",
+          "description": "Desktop platforms.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "mobile": {
+          "type": "array",
+          "description": "Mobile platforms.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "server": {
+          "type": "array",
+          "description": "Server or container platforms.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "web": {
+          "type": "array",
+          "description": "Supported web platforms or browsers.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "operatingSystems": {
+          "type": "array",
+          "description": "Supported operating systems.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "description": "Runtime requirements.",
+      "additionalProperties": false,
+      "properties": {
+        "python": {
+          "type": "string",
+          "description": "Python version constraint.",
+          "minLength": 1
+        },
+        "node": {
+          "type": "string",
+          "description": "Node.js version constraint.",
+          "minLength": 1
+        },
+        "docker": {
+          "type": "boolean"
+        },
+        "container": {
+          "type": "string",
+          "description": "Container runtime.",
+          "minLength": 1
+        }
+      }
+    },
+    "entrypoints": {
+      "type": "object",
+      "description": "Primary application, CLI, GUI, API, test, and documentation entry points.",
+      "additionalProperties": false,
+      "properties": {
+        "application": {
+          "$ref": "#/$defs/pathString"
+        },
+        "cli": {
+          "$ref": "#/$defs/pathString"
+        },
+        "gui": {
+          "$ref": "#/$defs/pathString"
+        },
+        "api": {
+          "$ref": "#/$defs/pathString"
+        },
+        "documentation": {
+          "$ref": "#/$defs/pathString"
+        },
+        "tests": {
+          "$ref": "#/$defs/pathString"
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "Canonical repository directory and file locations.",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/pathString"
+        },
+        "tests": {
+          "$ref": "#/$defs/pathString"
+        },
+        "documentation": {
+          "$ref": "#/$defs/pathString"
+        },
+        "scripts": {
+          "$ref": "#/$defs/pathString"
+        },
+        "assets": {
+          "$ref": "#/$defs/pathString"
+        },
+        "examples": {
+          "$ref": "#/$defs/pathString"
+        },
+        "configuration": {
+          "$ref": "#/$defs/pathString"
+        },
+        "data": {
+          "$ref": "#/$defs/pathString"
+        },
+        "project": {
+          "$ref": "#/$defs/pathString"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Required, optional, and external project dependencies.",
+      "additionalProperties": false,
+      "properties": {
+        "required": {
+          "type": "array",
+          "description": "Required dependencies.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "optional": {
+          "type": "array",
+          "description": "Optional dependencies.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "externalServices": {
+          "type": "array",
+          "description": "External services.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "documentation": {
+      "type": "object",
+      "description": "Documentation configuration and locations.",
+      "additionalProperties": false,
+      "properties": {
+        "readme": {
+          "$ref": "#/$defs/pathString"
+        },
+        "structure": {
+          "$ref": "#/$defs/pathString"
+        },
+        "changelog": {
+          "$ref": "#/$defs/pathString"
+        },
+        "license": {
+          "$ref": "#/$defs/pathString"
+        },
+        "docsRoot": {
+          "$ref": "#/$defs/pathString"
+        },
+        "website": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "support": {
+      "type": "object",
+      "description": "Project support information.",
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "documentation": {
+          "$ref": "#/$defs/uriString"
+        },
+        "community": {
+          "$ref": "#/$defs/uriString"
+        },
+        "security": {
+          "$ref": "#/$defs/uriString"
+        },
+        "issues": {
+          "$ref": "#/$defs/uriString"
+        },
+        "discussions": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "description": "Build, packaging, and distribution configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "buildSystem": {
+          "type": "string",
+          "description": "Primary build system.",
+          "minLength": 1
+        },
+        "packageFormat": {
+          "type": "array",
+          "description": "Produced package formats.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "commands": {
+          "$ref": "#/$defs/stringMap"
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "description": "Release management and version information.",
+      "additionalProperties": false,
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "description": "Release strategy.",
+          "minLength": 1
+        },
+        "versioning": {
+          "type": "string",
+          "description": "Versioning standard.",
+          "minLength": 1
+        },
+        "latestVersion": {
+          "$ref": "#/$defs/semver"
+        },
+        "releaseNotes": {
+          "$ref": "#/$defs/pathString"
+        }
+      }
+    },
+    "distribution": {
+      "type": "object",
+      "description": "Project distribution channels.",
+      "additionalProperties": false,
+      "properties": {
+        "githubReleases": {
+          "$ref": "#/$defs/uriString"
+        },
+        "dockerHub": {
+          "$ref": "#/$defs/uriString"
+        },
+        "npm": {
+          "$ref": "#/$defs/uriString"
+        },
+        "pypi": {
+          "$ref": "#/$defs/uriString"
+        },
+        "winget": {
+          "$ref": "#/$defs/uriString"
+        },
+        "homebrew": {
+          "$ref": "#/$defs/uriString"
+        },
+        "snap": {
+          "$ref": "#/$defs/uriString"
+        },
+        "flatpak": {
+          "$ref": "#/$defs/uriString"
+        },
+        "chocolatey": {
+          "$ref": "#/$defs/uriString"
+        },
+        "scoop": {
+          "$ref": "#/$defs/uriString"
+        },
+        "crates": {
+          "$ref": "#/$defs/uriString"
+        },
+        "nuget": {
+          "$ref": "#/$defs/uriString"
+        },
+        "maven": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "funding": {
+      "type": "object",
+      "description": "Funding and sponsorship information.",
+      "additionalProperties": false,
+      "properties": {
+        "github": {
+          "$ref": "#/$defs/uriString"
+        },
+        "openCollective": {
+          "$ref": "#/$defs/uriString"
+        },
+        "patreon": {
+          "$ref": "#/$defs/uriString"
+        },
+        "custom": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "description": "Formatting, linting, testing, and quality assurance configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "formatter": {
+          "type": "string",
+          "description": "Code formatter.",
+          "minLength": 1
+        },
+        "linter": {
+          "type": "string",
+          "description": "Code linter.",
+          "minLength": 1
+        },
+        "testFramework": {
+          "type": "string",
+          "description": "Test framework.",
+          "minLength": 1
+        },
+        "coverage": {
+          "type": "string",
+          "description": "Coverage tool.",
+          "minLength": 1
+        },
+        "security": {
+          "type": "array",
+          "description": "Security tooling.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "description": "Project security metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "policy": {
+          "$ref": "#/$defs/uriString"
+        },
+        "sbom": {
+          "$ref": "#/$defs/pathString"
+        },
+        "signing": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vulnerabilityReporting": {
+          "$ref": "#/$defs/uriString"
+        }
+      }
+    },
+    "automation": {
+      "type": "object",
+      "description": "Automation, CI/CD, and workflow configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "ci": {
+          "type": "string",
+          "description": "Continuous integration system.",
+          "minLength": 1
+        },
+        "cd": {
+          "type": "string",
+          "description": "Continuous delivery system.",
+          "minLength": 1
+        },
+        "workflows": {
+          "type": "array",
+          "description": "Automation workflows.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "scheduledTasks": {
+          "type": "array",
+          "description": "Scheduled automation tasks.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "ai": {
+      "type": "object",
+      "description": "AI-related project metadata and repository context capabilities.",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "repositoryContext": {
+          "type": "boolean"
+        },
+        "documentationContext": {
+          "type": "boolean"
+        },
+        "projectStructure": {
+          "type": "boolean"
+        },
+        "codingGuidelines": {
+          "type": "boolean"
+        },
+        "architectureGuidelines": {
+          "type": "boolean"
+        },
+        "entrypointDiscovery": {
+          "type": "boolean"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Manifest metadata, timestamps, and specification information.",
+      "additionalProperties": false,
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "manifestAuthor": {
+          "type": "string",
+          "description": "Manifest author.",
+          "minLength": 1
+        },
+        "generator": {
+          "type": "string",
+          "description": "Manifest generator.",
+          "minLength": 1
+        },
+        "specification": {
+          "type": "string",
+          "const": "VPMS"
+        },
+        "specificationVersion": {
+          "type": "string",
+          "pattern": "^2\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$",
+          "description": "Semantic version of the VPMS Version 2 specification."
+        }
+      }
+    }
+  }
+}
